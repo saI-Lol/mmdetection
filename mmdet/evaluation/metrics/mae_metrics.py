@@ -147,6 +147,8 @@ class MAEMetric(BaseMetric):
         df_pred = self.results2dataframe(preds)
 
         metrics = dict()
+        metrics['length_ground_truth'] = len(df_gt['ID'].unique())
+        metrics['length_predictions'] = len(df_pred['ID'].unique())
         for confidence in self.confidence_thresholds: 
             try:
                 df_pred_confidence = df_pred[df_pred['confidence'] >= confidence].copy()
